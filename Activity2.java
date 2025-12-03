@@ -1,5 +1,3 @@
-package com.bpi.training;
-
 import java.util.Scanner;
 
 public class Activity2 {
@@ -15,4 +13,5 @@ public class Activity2 {
 	    System.out.println("Your age as int: " + ageParInt);
 	    System.out.println("Your age as double: " + ageParamDob);
 	    scanner.close();
+	}
 }

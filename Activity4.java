@@ -1,5 +1,3 @@
-package com.bpi.training;
-
 import java.util.Scanner;
 
 public class Activity4 {
