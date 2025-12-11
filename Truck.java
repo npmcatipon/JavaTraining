@@ -18,7 +18,7 @@ public class Truck extends Vehicle implements Refuelable  {
 	}
 
 	@Override
-	public void destroy() {
+	void destroy() {
 		System.out.println("Destroying Truck's " + getBrand() + " engine with " + getNumberOfWheels() + " wheels.");
 	}
 }
