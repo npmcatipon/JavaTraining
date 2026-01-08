@@ -7,7 +7,7 @@ public class M4_Activity2 {
 		System.out.println();
 		System.out.println("--- Test 1: Valid Withdrawal ---");
 
-		atm.processWithdrawal("1" , "5000");
+		atm.processWithdrawal("1" , "100");
 
 		System.out.println("--- Test 2: Invalid Account Index ---");
 
@@ -19,7 +19,6 @@ public class M4_Activity2 {
 
 		System.out.println("--- Test 4: Insufficient Funds ---");
 		atm.processWithdrawal("1" , "20000");
-		System.out.println();
 
 		System.out.println("==== All tests completed! ==="); 
 	}
