@@ -1,3 +1,5 @@
+package com.bpi.group.project;
+
 /*
  * 1. Upon application start, ask user to create one User
  * 2. Create one Library object

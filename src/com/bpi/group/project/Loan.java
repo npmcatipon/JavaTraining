@@ -1,4 +1,4 @@
-
+package com.bpi.group.project;
 
 public class Loan {
 

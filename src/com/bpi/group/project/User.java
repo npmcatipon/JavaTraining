@@ -1,3 +1,5 @@
+package com.bpi.group.project;
+
 public class User {
 		
 	private String name;
