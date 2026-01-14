@@ -62,7 +62,7 @@ public class BankAccountService {
 			// TODO 8: Throw InvalidAccountException with formatted message showing min and
 			// received balance
 			// Use String.format with MINIMUM_INITIAL_BALANCE and initialBalance
-			
+			throw new InvalidAccountException(String.format("Account creation failed: minimum should be %.2f. Received balance is %.2f",MINIMUM_INITIAL_BALANCE,initialBalance));
 		}
 
 		// Check for duplicate account
@@ -95,7 +95,7 @@ public class BankAccountService {
 			// TODO 13: Throw InvalidAccountException with message "Account creation failed"
 			// and original exception
 			// Pass exception 'e' as second parameter
-
+			throw new InvalidAccountException("Account creation failed", e);
 		}
 	}
 
