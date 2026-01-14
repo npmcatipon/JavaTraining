@@ -1,4 +1,4 @@
-package com.bpi.m4.activity6;
+package com.bpi.m4.activity8;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,13 +49,10 @@ public class BankAccount {
 					operation.execute();
 					logger.info("Test '{}' completed successfully.", operationName);
 			} catch (InvalidAmountException e) {
-					// Log ERROR with exception object
 					logger.error("Test '{}' failed due to invalid amount.", operationName, e);
 			} catch (InsufficientFundsException e) {
-					// Log ERROR with exception object
 					logger.error("Test '{}' failed due to insufficient funds.", operationName, e);
 			} catch (Exception e) {
-					// Optional: catch any other unexpected exceptions
 					logger.error("Test '{}' encountered an unexpected error.", operationName, e);
 			}
 	}

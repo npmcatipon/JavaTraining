@@ -1,6 +1,6 @@
-package com.bpi.m4.activity6;
+package com.bpi.m4.activity8;
 
-public class M4Activity6 {
+public class M4Activity8 {
 
 	public static void main(String[] args) {
 		BankAccount bac = new BankAccount();

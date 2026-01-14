@@ -1,4 +1,4 @@
-package com.bpi.m4.activity6;
+package com.bpi.m4.activity8;
 
 final class InvalidAmountException extends Exception {
 

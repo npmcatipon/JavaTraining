@@ -1,0 +1,25 @@
+2026-01-14 15:54:42.709 [INFO] com.bpi.m4.activity8.BankAccount - Deposit Requested : ₱ 5000.0
+2026-01-14 15:54:42.712 [INFO] com.bpi.m4.activity8.BankAccount - Test 'Deposit' completed successfully.
+2026-01-14 15:54:42.713 [INFO] com.bpi.m4.activity8.BankAccount - Withdraw requested : ₱3000.0 
+2026-01-14 15:54:42.713 [INFO] com.bpi.m4.activity8.BankAccount - Withdrawal Completed: ₱7000.0
+2026-01-14 15:54:42.713 [INFO] com.bpi.m4.activity8.BankAccount - Test 'Withdrawal' completed successfully.
+2026-01-14 15:54:42.713 [INFO] com.bpi.m4.activity8.BankAccount - Deposit Requested : ₱ -500.0
+2026-01-14 15:54:42.714 [ERROR] com.bpi.m4.activity8.BankAccount - ERROR : Cannot deposit negative value : ₱-500.0
+2026-01-14 15:54:42.714 [ERROR] com.bpi.m4.activity8.BankAccount - Test 'Deposit' failed due to invalid amount.
+com.bpi.m4.activity8.InvalidAmountException: ERROR : Invalid ammount entered
+	at com.bpi.m4.activity8.BankAccount.deposit(BankAccount.java:36)
+	at com.bpi.m4.activity8.M4Activity8.lambda$2(M4Activity8.java:10)
+	at com.bpi.m4.activity8.BankAccount.runTest(BankAccount.java:49)
+	at com.bpi.m4.activity8.M4Activity8.main(M4Activity8.java:10)
+2026-01-14 15:54:42.717 [INFO] com.bpi.m4.activity8.BankAccount - Withdraw requested : ₱20000.0 
+2026-01-14 15:54:42.717 [WARN] com.bpi.m4.activity8.BankAccount - WARNING : Insufficient funds, amount entered : ₱20000.0 ; current balance is : Balance 7000.0
+2026-01-14 15:54:42.717 [ERROR] com.bpi.m4.activity8.BankAccount - Test 'Withdrawal' failed due to insufficient funds.
+com.bpi.m4.activity8.InsufficientFundsException: ERROR : Insufficient amount requested
+	at com.bpi.m4.activity8.BankAccount.withdraw(BankAccount.java:22)
+	at com.bpi.m4.activity8.M4Activity8.lambda$3(M4Activity8.java:11)
+	at com.bpi.m4.activity8.BankAccount.runTest(BankAccount.java:49)
+	at com.bpi.m4.activity8.M4Activity8.main(M4Activity8.java:11)
+2026-01-14 15:54:42.717 [INFO] com.bpi.m4.activity8.BankAccount - Deposit Requested : ₱ 60000.0
+2026-01-14 15:54:42.717 [WARN] com.bpi.m4.activity8.BankAccount - Large deposit: ₱60000.0 - requires verification
+2026-01-14 15:54:42.718 [INFO] com.bpi.m4.activity8.BankAccount - Deposit Completed : ₱60000.0, New balance : ₱67000.0
+2026-01-14 15:54:42.718 [INFO] com.bpi.m4.activity8.BankAccount - Test 'Deposit' completed successfully.
