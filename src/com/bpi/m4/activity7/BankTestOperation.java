@@ -1,4 +1,4 @@
-package com.bpi.m4.activity6;
+package com.bpi.m4.activity7;
 
 @FunctionalInterface 
 public interface BankTestOperation {
