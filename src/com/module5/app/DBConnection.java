@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 public class DBConnection {
 	public static void main(String[] args) {
+		final Logger logger = (Logger) LoggerFactory.getLogger(DBConnection.class);
 		final String URL = "jdbc:postgresql://localhost:5432/training_db";
 	    final String USER = "postgres";
 	    final String PASSWORD = "postgres";
@@ -19,7 +20,7 @@ public class DBConnection {
         ResultSet resultSet = null;
         
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            System.out.println("Connected to PostgreSQL successfully!");
+            logger.info("Connected successfully");
         } catch (SQLException e) {
         	e.printStackTrace();
         }
