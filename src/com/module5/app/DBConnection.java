@@ -22,7 +22,7 @@ public class DBConnection {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             logger.info("Connected successfully");
         } catch (SQLException e) {
-        	e.printStackTrace();
+        	logger.error("Encountered error on connecting to database. {}", e);
         }
 	}
 }
