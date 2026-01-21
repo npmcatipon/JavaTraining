@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example</groupId>
+	<artifactId>pg-logback-demo</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.17</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.4.14</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.7</version>
+		</dependency>
+	</dependencies>
+	
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <properties>
+        <env.name>dev</env.name>
+      </properties>
+    </profile>
+  </profiles>
+
+</project>
