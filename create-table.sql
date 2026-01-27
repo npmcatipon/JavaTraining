@@ -9,7 +9,7 @@ CREATE TABLE courses (
     id SERIAL NOT NULL,
     student_id INT,
     course_name VARCHAR(50),
-    grade VARCHAR(2),
+    grade INT(2),
     PRIMARY KEY (id),
     FOREIGN KEY (student_id) REFERENCES students(id)
 );

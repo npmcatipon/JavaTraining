@@ -6,12 +6,18 @@ public class Courses {
 	private int student_id;
 	private String course_name;
 	private int grade;
-	public Courses(int id, int student_id, String course_name, int grade) {
+	private String name;
+	public Courses(int id, int student_id, String course_name, int grade, String name) {
 		super();
 		this.id = id;
 		this.student_id = student_id;
 		this.course_name = course_name;
 		this.grade = grade;
+		this.name = name;
+	}
+	public Courses(int student_id) {
+		super();
+		this.student_id = student_id;
 	}
 	public int getId() {
 		return id;
@@ -36,6 +42,12 @@ public class Courses {
 	}
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

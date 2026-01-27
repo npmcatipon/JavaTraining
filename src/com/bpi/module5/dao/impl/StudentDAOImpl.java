@@ -48,11 +48,10 @@ public class StudentDAOImpl implements StudentDAO {
 						rs.getString("email")
 				));
 			}
-			
+						
 		} catch (SQLException e) {
 			throw new RuntimeException("Failed to list all students.", e);
 		}
-		
 		return student;
 	}
 }

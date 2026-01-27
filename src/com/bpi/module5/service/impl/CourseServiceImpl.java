@@ -23,5 +23,9 @@ public class CourseServiceImpl implements CourseService {
 	public List<Courses> getCourse() {
 		return courseDAO.showAllCourses();
 	}
-
+	
+	@Override
+	public boolean isValid(int studentId) {
+		return courseDAO.checkStudentId(studentId);
+	}
 }

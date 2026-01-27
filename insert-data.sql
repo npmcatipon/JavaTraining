@@ -7,6 +7,6 @@ INSERT INTO students (name, age, email) VALUES
 
 
 INSERT INTO courses (student_id, course_name, grade) VALUES
-(1, 'English', 'A'),
-(2, 'Science', 'B'),
-(3, 'Filipino', 'A');
+(1, 'English', '85'),
+(2, 'Science', '90'),
+(3, 'Filipino', '88');

@@ -8,5 +8,6 @@ public interface CoursesDAO {
 	
 	void addCourse(int studentId,String courseName,int grade);
 	List<Courses> showAllCourses();
+	boolean checkStudentId(int studentId);
 	
 }

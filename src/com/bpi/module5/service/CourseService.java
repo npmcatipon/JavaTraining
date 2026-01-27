@@ -8,5 +8,5 @@ public interface CourseService {
 	
 	void addCourse(int studentId, String courseName, int grade);
 	List<Courses> getCourse();
-	
+	boolean isValid(int studentId);
 }
