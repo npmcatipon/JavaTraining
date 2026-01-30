@@ -1,4 +1,4 @@
-package com.bpi.M6;
+package java.com.bpi.module6;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

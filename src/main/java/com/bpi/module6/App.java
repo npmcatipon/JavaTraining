@@ -1,46 +1,67 @@
 package com.bpi.module6;
 
-import com.bpi.module6.model.Courses;
+import java.util.List;
+
 import com.bpi.module6.model.Student;
 import com.bpi.module6.util.EntityManagerUtil;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 public class App
 {
     public static void main( String[] args ) {
     	EntityManager em = EntityManagerUtil.createEntityManager();
     	try {
-    		run(em);
+    		printAllStudentNames(em);
+    		
+    		Long coursesByStudentId = countCoursesByStudentId(em, 14L);
+    		System.out.println("Count of Courses per Student ID 14L is " + coursesByStudentId);
+    		
+    		int studentAgeGreaterThan = countStudentAgeGreaterThan(em, 18);
+    		System.out.println("Count of Students Age is Greater Than 22 : " + studentAgeGreaterThan);
+    		
     	} finally {
 			EntityManagerUtil.close(em);
 			EntityManagerUtil.shutdown();
 		}
     }
 
-	static void run(EntityManager em) {
+	static void test(EntityManager em, long l) {
+		em.getTransaction().begin();
+		String j = """
+				
+				""";
+		em.getTransaction().commit();
+	}
+
+	static int countStudentAgeGreaterThan(EntityManager em, int i) {
+		em.getTransaction().begin();
+		String jpql = """
+				SELECT COUNT(s) FROM Student s WHERE s.age > :age
+				""";
+		Long result = em.createQuery(jpql,Long.class).setParameter("age", i).getSingleResult();
+		return result.intValue();
+	}
+
+	static Long countCoursesByStudentId(EntityManager em, long id) {
 		em.getTransaction().begin();
 		
-		Student student = new Student(22,"Jerry Doe", "jerrydoe7@gmail.com");
-		em.persist(student);
-		
-		em.flush();
-		em.detach(student);
+		String jpql = "SELECT COUNT(s) FROM Student s JOIN s.courses WHERE s.id = :student_id";
+		Long query = em.createQuery(jpql, Long.class).setParameter("student_id", id).setParameter("student_id",id).getSingleResult();
+		em.getTransaction().commit();
+		return query;
+	}
 
-		System.out.println("is newstudent inside the persistence context." + em.contains(student));
+	static void printAllStudentNames(EntityManager em) {
+		em.getTransaction().begin();
 		
-		Student managed = em.merge(student);
-		managed.setAge(23);
+		String jpql = "SELECT s FROM Student s";
+		TypedQuery<Student> query = em.createQuery(jpql, Student.class);
+		List<Student> students = query.getResultList();
 		
-		em.flush();
+		students.forEach(student -> System.out.println(student.getName()));
 		
-		System.out.println("is newstudent inside the persistence context." + em.contains(managed));
-		
-		em.remove(managed);
-		em.flush();
-		
-		System.out.println("is newstudent inside the persistence context." + em.contains(student));
-
 		em.getTransaction().commit();
 	}
 }
