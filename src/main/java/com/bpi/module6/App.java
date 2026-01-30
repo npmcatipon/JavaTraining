@@ -15,11 +15,13 @@ public class App
     	try {
     		printAllStudentNames(em);
     		
-    		Long coursesByStudentId = countCoursesByStudentId(em, 14L);
-    		System.out.println("Count of Courses per Student ID 14L is " + coursesByStudentId);
+    		Long studentId = 2L;
+    		Long coursesByStudentId = countCoursesByStudentId(em, studentId);
+    		System.out.println("Count of Courses per Student ID " + studentId.intValue() + " is " + coursesByStudentId);
     		
-    		int studentAgeGreaterThan = countStudentAgeGreaterThan(em, 18);
-    		System.out.println("Count of Students Age is Greater Than 22 : " + studentAgeGreaterThan);
+    		int targetAge = 22;
+    		int studentAgeGreaterThan = countStudentAgeGreaterThan(em, targetAge);
+    		System.out.println("Count of Students Age is Greater Than " + targetAge + " is " + studentAgeGreaterThan);
     		
     	} finally {
 			EntityManagerUtil.close(em);
@@ -27,20 +29,13 @@ public class App
 		}
     }
 
-	static void test(EntityManager em, long l) {
-		em.getTransaction().begin();
-		String j = """
-				
-				""";
-		em.getTransaction().commit();
-	}
-
 	static int countStudentAgeGreaterThan(EntityManager em, int i) {
 		em.getTransaction().begin();
 		String jpql = """
 				SELECT COUNT(s) FROM Student s WHERE s.age > :age
 				""";
 		Long result = em.createQuery(jpql,Long.class).setParameter("age", i).getSingleResult();
+		em.getTransaction().commit();
 		return result.intValue();
 	}
 
@@ -60,7 +55,7 @@ public class App
 		TypedQuery<Student> query = em.createQuery(jpql, Student.class);
 		List<Student> students = query.getResultList();
 		
-		students.forEach(student -> System.out.println(student.getName()));
+		students.forEach(student -> System.out.printf("Student ID %d, Student Name: %s%n", student.getId(),student.getName()));
 		
 		em.getTransaction().commit();
 	}
