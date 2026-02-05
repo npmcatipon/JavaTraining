@@ -27,7 +27,7 @@ public class Student {
 			columnDefinition = "VARCHAR(50)")
 	private String name;
 	
-	@Column(name = "emai",
+	@Column(name = "email",
 			unique = true,
 			length = 100,
 			columnDefinition = "VARCHAR(100)")
