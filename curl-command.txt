@@ -1,0 +1,4 @@
+1. curl -X GET http://localhost:4568/profiles
+2. curl -X POST -H 'Content-Type: application/json' http://localhost:4568/profiles -d '{ "name" : "New Name", "group" : "Group 2" }'
+3. curl -X PUT -H 'Content-Type: application/json' http://localhost:4568/profiles\?name\=Emilio%20Aguinaldo -d '{ "name" : "Antonio Luna", "group" : "Illustrados" }'
+4. curl -X DELETE http://localhost:4568/profiles/2
