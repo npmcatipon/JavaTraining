@@ -3,6 +3,10 @@
   <groupId>ph.com.bpi.training</groupId>
   <artifactId>api-training</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+      <maven.compiler.source>17</maven.compiler.source>
+      <maven.compiler.target>17</maven.compiler.target>
+  </properties>
   <dependencies>
 	   <!-- Spark Java -->
 	    <dependency>
