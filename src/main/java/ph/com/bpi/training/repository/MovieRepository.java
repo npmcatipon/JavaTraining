@@ -1,8 +1,9 @@
-package ph.com.bpi.training;
+package ph.com.bpi.training.repository;
 
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
+import ph.com.bpi.training.model.Movie;
 
 public class MovieRepository implements Repository<Movie, Long> {
 
@@ -13,13 +14,32 @@ public class MovieRepository implements Repository<Movie, Long> {
     }
 
     @Override
-    public Movie save(Movie entity) {
-        if (entity.getId() == null) {
-            em.persist(entity);
+    public Movie save(Movie movie) {
+        if (movie.getId() == null) {
+            em.persist(movie);
         } else {
-            entity = em.merge(entity);
+        	movie = em.merge(movie);
         }
-        return entity;
+        return movie;
+    }
+    
+    public List<Movie> saveAll(List<Movie> movies) {
+    	for (Movie m : movies) {
+    		if(m.getId() == null) {
+    			em.persist(m);
+    		} else {
+    			em.merge(m);
+    		}
+    		
+    		em.flush();
+    		em.clear();
+    		
+    	}
+    	
+    	em.flush();
+    	em.clear();
+    	
+    	return movies;
     }
 
     @Override

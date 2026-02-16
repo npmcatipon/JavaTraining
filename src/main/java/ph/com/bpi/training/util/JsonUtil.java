@@ -1,4 +1,4 @@
-package ph.com.bpi.training;
+package ph.com.bpi.training.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
