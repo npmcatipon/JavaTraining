@@ -2,7 +2,6 @@ package ph.com.bpi.training.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ForkJoinPool.ManagedBlocker;
 import java.util.stream.Collectors;
 
 import jakarta.persistence.EntityManager;
@@ -63,9 +62,6 @@ public class MovieService {
 			});
 			
 			tx.commit();
-			
-			// TODO: sysout
-			movieList.forEach(movie -> System.out.println(movie));
 			
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
