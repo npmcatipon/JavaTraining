@@ -16,9 +16,9 @@ public class SpringbootApplication {
 	
 
     @Bean
-    public CommandLineRunner run(BookService bookService) {
+    CommandLineRunner run(BookService bookService) {
         return args -> {
-            bookService.log();   // prints "Test" on startup
+            bookService.printLog();   // prints "Test" on startup
         };
     }
 
