@@ -1,0 +1,12 @@
+package com.training.springboot.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class LoggerService {
+	
+	public void log(String msg) {
+		System.out.println(msg);
+	}
+
+}
