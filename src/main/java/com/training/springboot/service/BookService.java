@@ -5,15 +5,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BookService {
-
-	private LoggerService loggerService;
 	
 	@Autowired
-	public void setLoggerService(LoggerService loggerService) {
-		this.loggerService = loggerService;
-	}
-	
+	private LoggerService loggerService;
+		
 	public void printLog() {
-		loggerService.log("Testing");
+		loggerService.log("Activity 4");
 	}
 }
