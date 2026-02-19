@@ -28,11 +28,13 @@ public class BookController {
 	
 	private int bookcount = 4;
 
+	// Implementing GET 8.1
 	@GetMapping
 	public List<Book> getAll() {
 		return books;
 	}
 	
+	// Implementing @PathVariable 8.3
 	@GetMapping("/{id}")
 	public Book getOne(@PathVariable Long id) {
 		return books.stream()
@@ -41,6 +43,7 @@ public class BookController {
 				.orElse(null);
 	}
 
+	// Implementing POST 8.2
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Book create(@RequestBody Book book) {
