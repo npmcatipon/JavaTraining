@@ -1,10 +1,15 @@
 package com.training.module8.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.module8.model.Book;
@@ -14,11 +19,14 @@ import com.training.module8.model.Book;
 @RequestMapping("/api/books")
 public class BookController {
 	
-	private static final List<Book> books = List.of(
+	private final List<Book> books = new ArrayList<>( 
+			List.of(
 			new Book(1L,"Java 101"),
 			new Book(2L,"Java 102"),
 			new Book(3L,"Java 103")
-			);
+			));
+	
+	private int bookcount = 4;
 
 	@GetMapping
 	public List<Book> getAll() {
@@ -33,6 +41,13 @@ public class BookController {
 				.orElse(null);
 	}
 
-	
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public Book create(@RequestBody Book book) {
+		book.setId(Long.valueOf(bookcount));
+		books.add(book);
+		bookcount++;
+		return book;
+	}
 	
 }
