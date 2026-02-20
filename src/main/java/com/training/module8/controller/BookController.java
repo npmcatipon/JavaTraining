@@ -21,29 +21,18 @@ public class BookController {
 	
 	private final List<Book> books = new ArrayList<>( 
 			List.of(
-			new Book(1L,"Java 101"),
-			new Book(2L,"Java 102"),
-			new Book(3L,"Java 103")
+			new Book(1L,"Java 101","Author of Java 101"),
+			new Book(2L,"Java 102","Author of Java 102"),
+			new Book(3L,"Java 103","Author of Java 103")
 			));
 	
 	private int bookcount = 4;
 
-	// Implementing GET 8.1
 	@GetMapping
 	public List<Book> getAll() {
 		return books;
 	}
 	
-	// Implementing @PathVariable 8.3
-	@GetMapping("/{id}")
-	public Book getOne(@PathVariable Long id) {
-		return books.stream()
-				.filter(b -> b.getId().equals(id))
-				.findFirst()
-				.orElse(null);
-	}
-
-	// Implementing POST 8.2
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Book create(@RequestBody Book book) {
@@ -51,6 +40,14 @@ public class BookController {
 		books.add(book);
 		bookcount++;
 		return book;
+	}
+	
+	@GetMapping("/{id}")
+	public Book getBook(@PathVariable Long id) {
+		return books.stream()
+				.filter(b -> b.getId().equals(id))
+				.findFirst()
+				.orElse(null);
 	}
 	
 }
