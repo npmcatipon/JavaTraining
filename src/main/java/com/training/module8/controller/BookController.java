@@ -52,26 +52,14 @@ public class BookController {
 				.orElse(null);
 	}
 	
-	@GetMapping("/searchByTitle")
-	public List<Book> searchByTitle(@RequestParam String title) {
+	@GetMapping("/search")
+	public List<Book> searchByTitle(
+			@RequestParam(required = true) String title,
+			@RequestParam(required = false) String author
+			) {
 		return books.stream()
-				.filter(b -> b.getTitle().equals(title))
-				.toList();
-	}
-	
-	@GetMapping("/searchByAuthor")
-	public List<Book> searchByAuthor(@RequestParam String author) {
-		return books.stream()
-				.filter(b -> b.getAuthor().equals(author))
-				.toList();
-	}
-	
-	@GetMapping("/searchByTitleAndAuthor")
-	public List<Book> searchByAuthor(@RequestParam String title,
-			@RequestParam String author) {
-		return books.stream()
-				.filter(b -> b.getTitle().equals(title))
-				.filter(b -> b.getAuthor().equals(author))
+				.filter(b -> b.getTitle() != null && b.getTitle().equals(title))
+				.filter(b -> author == null || b.getAuthor().equals(author))
 				.toList();
 	}
 	
