@@ -54,7 +54,7 @@ public class BookController {
 	
 	@GetMapping("/search")
 	public List<Book> searchByTitle(
-			@RequestParam(required = true) String title,
+			@RequestParam(required = false) String title,
 			@RequestParam(required = false) String author
 			) {
 		return books.stream()
