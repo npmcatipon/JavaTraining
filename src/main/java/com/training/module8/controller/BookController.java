@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.training.module8.dto.BookDTO;
 import com.training.module8.model.Book;
 
 
@@ -31,8 +32,14 @@ public class BookController {
 	private int bookcount = 4;
 
 	@GetMapping
-	public List<Book> getAll() {
-		return books;
+	public List<BookDTO> getAll() {
+		List<BookDTO> bookDTO = new ArrayList<>();
+		
+		books.stream()
+		.map(b -> new BookDTO(b.getId(),b.getTitle(),b.getAuthor()))
+		.toList();
+		
+		return bookDTO;
 	}
 	
 	@PostMapping
@@ -45,28 +52,32 @@ public class BookController {
 	}
 	
 	@GetMapping("/{id}")
-	public Book getBook(@PathVariable Long id) {
+	public BookDTO getBook(@PathVariable Long id) {
 		return books.stream()
 				.filter(b -> b.getId().equals(id))
 				.findFirst()
+				.map(b -> (new BookDTO(b.getId(), b.getTitle(),b.getAuthor())))
 				.orElse(null);
 	}
 	
 	@GetMapping("/search")
-	public List<Book> searchByTitle(
+	public List<BookDTO> search(
 			@RequestParam(required = false) String title,
 			@RequestParam(required = false) String author
 			) {
 		return books.stream()
 				.filter(b -> b.getTitle() != null && b.getTitle().equals(title))
 				.filter(b -> author == null || b.getAuthor().equals(author))
+				.map(b -> new BookDTO(b.getId(), b.getTitle(), b.getAuthor()))
 				.toList();
 	}
 	
 	@ResponseBody
 	@GetMapping("/old")
-	public List<Book> getAllUsingResponseBody() {
-		return books;
+	public List<BookDTO> getAllUsingResponseBody() {
+		return books.stream()
+				.map(b -> new BookDTO(b.getId(), b.getTitle(), b.getAuthor()))
+				.toList();
 	}
 	
 }
