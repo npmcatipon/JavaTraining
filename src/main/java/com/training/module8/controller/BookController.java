@@ -33,13 +33,9 @@ public class BookController {
 
 	@GetMapping
 	public List<BookDTO> getAll() {
-		List<BookDTO> bookDTO = new ArrayList<>();
-		
-		books.stream()
-		.map(b -> new BookDTO(b.getId(),b.getTitle(),b.getAuthor()))
+		return books.stream()
+		.map(b -> new BookDTO(b.getTitle(),b.getAuthor()))
 		.toList();
-		
-		return bookDTO;
 	}
 	
 	@PostMapping
@@ -56,7 +52,7 @@ public class BookController {
 		return books.stream()
 				.filter(b -> b.getId().equals(id))
 				.findFirst()
-				.map(b -> (new BookDTO(b.getId(), b.getTitle(),b.getAuthor())))
+				.map(b -> (new BookDTO(b.getTitle(),b.getAuthor())))
 				.orElse(null);
 	}
 	
@@ -68,7 +64,7 @@ public class BookController {
 		return books.stream()
 				.filter(b -> b.getTitle() != null && b.getTitle().equals(title))
 				.filter(b -> author == null || b.getAuthor().equals(author))
-				.map(b -> new BookDTO(b.getId(), b.getTitle(), b.getAuthor()))
+				.map(b -> new BookDTO(b.getTitle(), b.getAuthor()))
 				.toList();
 	}
 	
@@ -76,7 +72,7 @@ public class BookController {
 	@GetMapping("/old")
 	public List<BookDTO> getAllUsingResponseBody() {
 		return books.stream()
-				.map(b -> new BookDTO(b.getId(), b.getTitle(), b.getAuthor()))
+				.map(b -> new BookDTO(b.getTitle(), b.getAuthor()))
 				.toList();
 	}
 	

@@ -16,5 +16,4 @@ public class ProfileController {
 	public String displayWelcomeMessage() {
 		return message;
 	}
-
 }
