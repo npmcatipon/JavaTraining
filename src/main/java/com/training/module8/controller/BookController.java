@@ -34,9 +34,21 @@ public class BookController {
 	@GetMapping
 	public List<BookDTO> getAll() {
 		return books.stream()
-		.map(b -> new BookDTO(b.getTitle(),b.getAuthor()))
+		.map(b-> new BookDTO(b.getTitle(),b.getAuthor()))
 		.toList();
 	}
+
+    @GetMapping("/delete/{id}")
+    public BookDTO deleteBook(@PathVariable Long id) {
+        Book forDeletion = books.stream()
+            .filter(b -> b.getId().equals(id))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("not found"));
+
+        books.removeIf(b -> b.getId().equals(id));
+
+        return new BookDTO(forDeletion.getTitle(),forDeletion.getAuthor());
+    }
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
