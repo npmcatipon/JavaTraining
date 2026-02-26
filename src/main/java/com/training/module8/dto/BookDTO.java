@@ -29,7 +29,7 @@ public class BookDTO {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	
+
 	public BookDTO (Book book) {
 		this.setTitle(book.getTitle());
 		this.setAuthor(book.getAuthor());
