@@ -34,4 +34,10 @@ public class BookService {
 		return bookRepository.findById(id).stream().toList();
 	}
 
+    public Book deleteById(Long id) {
+        List<Book> book = searchById(id);
+        bookRepository.deleteById(id);
+        return book.get(0);
+    }
+
 }
