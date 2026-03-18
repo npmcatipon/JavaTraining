@@ -23,10 +23,10 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/profile/**").authenticated()
-						.requestMatchers("/dashboard/**").hasAnyRole("USER", "MANAGER")
-						.requestMatchers("/home/**").hasRole("USER")
+						.requestMatchers("/home/**").hasAnyRole("USER", "MANAGER")
+						.requestMatchers("/dashboard/**").hasRole("USER")
 						.requestMatchers("/reports/**").hasRole("MANAGER")
+						.requestMatchers("/profile/**").authenticated()
 						.anyRequest().authenticated())
 				.httpBasic(withDefaults());
 		return http.build();
@@ -35,15 +35,15 @@ public class SecurityConfig {
 	@Bean
 	public InMemoryUserDetailsManager userDetailsService() {
 
-		UserDetails dev1 = User.withUsername("dev01")
+		UserDetails dev1 = User.withUsername("dev_1")
 				.password(passwordEncoder().encode("dev01pwd"))
 				.roles("USER")
 				.build();
-		UserDetails dev2 = User.withUsername("dev02")
+		UserDetails dev2 = User.withUsername("dev_2")
 				.password(passwordEncoder().encode("dev02pwd"))
 				.roles("USER")
 				.build();
-		UserDetails manager = User.withUsername("manager01")
+		UserDetails manager = User.withUsername("mgr_1")
 				.password(passwordEncoder().encode("manager01pwd"))
 				.roles("MANAGER")
 				.build();
