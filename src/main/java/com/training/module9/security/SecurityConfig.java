@@ -37,6 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/create").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(new CustomAuthEntryPoint()))
+                .exceptionHandling(ex -> ex.accessDeniedHandler(new CustomAccessDeniedHandler()))
                 .httpBasic(withDefaults());
         return http.build();
     }
