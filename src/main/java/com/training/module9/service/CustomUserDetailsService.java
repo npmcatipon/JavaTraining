@@ -34,7 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         List<SimpleGrantedAuthority> authorities = roles.stream()
                 // .map(SimpleGrantedAuthority::new)
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                .map(role -> new SimpleGrantedAuthority(role))
                 .collect(Collectors.toList());
 
         return new org.springframework.security.core.userdetails.User(
