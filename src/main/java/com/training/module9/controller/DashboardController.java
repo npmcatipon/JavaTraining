@@ -40,7 +40,7 @@ public class DashboardController {
 	}
 
 	@GetMapping("/profile2")
-	public String getProfile2(@AuthenticationPrincipal UserDetails user) {
-		return "Hello, " + user.getUsername();
+	public String getProfile2(Principal principal) {
+		return "Hello, " + principal.getName();
 	}
 }
