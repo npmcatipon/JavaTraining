@@ -36,11 +36,17 @@ public class DashboardController {
 	@GetMapping("/profile/username/{username}")
 	@PreAuthorize("#username == authentication.name")
 	public String getProfileByUserName(@PathVariable String username) {
-		return "Profile of " + username;
-	}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-	@GetMapping("/profile2")
-	public String getProfile2(Principal principal) {
-		return "Hello, " + principal.getName();
+		if (auth != null && auth.isAuthenticated()) {
+			String uname = auth.getName();
+			Object principal = auth.getPrincipal();
+			Collection<? extends GrantedAuthority> roles = auth.getAuthorities();
+
+			System.out.println("Username: " + uname);
+			System.out.println("Principal: " + principal);
+			System.out.println("Roles: " + roles);
+		}
+		return "Profile of " + username;
 	}
 }

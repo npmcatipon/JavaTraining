@@ -36,6 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/profile/**").authenticated()
                         .requestMatchers("/api/users/create").permitAll()
                         .anyRequest().authenticated())
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(new CustomAuthEntryPoint()))
                 .httpBasic(withDefaults());
         return http.build();
     }
