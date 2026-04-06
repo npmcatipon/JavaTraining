@@ -60,10 +60,12 @@ public class UserServiceTest {
     @Test
     void addRole_success() {
         when(repository.findByUsername("sample")).thenReturn(user);
+        when(repository.save(any(User.class))).thenReturn(user);
 
-        userService.addRole(user.getUsername(), "USER");
+        User result = userService.addRole("sample", "USER");
 
-        assertEquals("USER", user.getRoles());
+        assertNotNull(result);
+        assertEquals("USER", result.getRoles());
 
         verify(repository).save(any(User.class));
     }

@@ -24,13 +24,13 @@ public class UserService {
         return repository.save(newUser);
     }
 
-    public void addRole(String username, String role) {
+    public User addRole(String username, String role) {
         User user = repository.findByUsername(username);
 
         if (user == null) {
             throw new RuntimeException("Username is not existing");
         }
         user.setRoles(role);
-        repository.save(user);
+        return repository.save(user);
     }
 }
