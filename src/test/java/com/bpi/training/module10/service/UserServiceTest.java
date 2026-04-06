@@ -3,6 +3,7 @@ package com.bpi.training.module10.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,16 +19,21 @@ public class UserServiceTest {
     @Mock
     private UserRepository repository;
 
+    private User user;
+
     @InjectMocks
     private UserService userService;
 
-    // Success
-    @Test
-    void createUser_success() {
-
-        User user = new User();
+    @BeforeEach
+    void startup() {
+        user = new User();
         user.setUsername("sample");
         user.setPassword("samplepass");
+    }
+
+    // Successful user creation
+    @Test
+    void createUser_success() {
 
         when(repository.existsByUsername("sample")).thenReturn(false);
         when(repository.save(any(User.class))).thenReturn(user);
@@ -39,7 +45,7 @@ public class UserServiceTest {
         verify(repository).save(any(User.class));
     }
 
-    // Failed
+    // Failed user creation
     @Test
     void createUser_duplicateUsername() {
         when(repository.existsByUsername("sample")).thenReturn(true);
@@ -48,5 +54,27 @@ public class UserServiceTest {
                 () -> userService.createUser("sample", "samplepass"));
 
         verify(repository, never()).save(any(User.class));
+    }
+
+    // Successful adding roles
+    @Test
+    void addRole_success() {
+        when(repository.findByUsername("sample")).thenReturn(user);
+
+        userService.addRole(user.getUsername(), "USER");
+
+        assertEquals("USER", user.getRoles());
+
+        verify(repository).save(any(User.class));
+    }
+
+    @Test
+    void addRole_usernameNotExisting() {
+        when(repository.findByUsername("sample2")).thenReturn(null);
+
+        RuntimeException e = assertThrows(RuntimeException.class,
+                () -> userService.addRole("sample2", "USER"));
+
+        assertEquals("Username is not existing", e.getMessage());
     }
 }

@@ -7,4 +7,6 @@ import com.bpi.training.module10.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByUsername(String username);
+
+    User findByUsername(String username);
 }
