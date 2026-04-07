@@ -1,6 +1,6 @@
 package com.bpi.training.module10.service;
 
-import javax.management.RuntimeErrorException;
+import org.springframework.stereotype.Service;
 
 import com.bpi.training.module10.dto.UserDTO;
 import com.bpi.training.module10.entity.User;
@@ -8,6 +8,7 @@ import com.bpi.training.module10.exception.UsernameAlreadyExistException;
 import com.bpi.training.module10.mapper.UserMapper;
 import com.bpi.training.module10.repository.UserRepository;
 
+@Service
 public class UserService {
 
     private final UserRepository userRepository;
@@ -25,10 +26,9 @@ public class UserService {
             throw new UsernameAlreadyExistException();
         }
 
-        User user = userRepository.findByUsername(userDto.getUsername())
-
-        return userMapper.toDto(user);
+        User user = userRepository.save(userMapper.toEntity(userDto));
             
+        return userMapper.toDto(user);
     }
 
 }
